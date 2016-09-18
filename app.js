@@ -5,7 +5,7 @@ var express = require('express'),
 
 server.listen(80);
 
-app.use(express.static('public'));
+app.use(express.static('dist'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 app.get('/', function(req, res) {
