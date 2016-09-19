@@ -17,10 +17,25 @@ module.exports = function(grunt) {
                     ext: '.css'
                 }]
             }
+        },
+
+        browserify: {
+            dist: {
+                options: {
+                    transform: [
+                        ['babelify', { loose: 'all'}]
+                    ]
+                },
+                files: {
+                    '<%= publicPath %>/dist/modules.js' : ['<%= publicPath %>/scripts/*.js', '<%= publicPath %>/scripts/*.es6']
+                },
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-browserify');
 
-    grunt.registerTask('default', ['sass']);
+    grunt.registerTask('default', ['sass', 'browserify']);
+    grunt.registerTask('build', ['browserify']);
 };
